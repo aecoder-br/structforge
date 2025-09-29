@@ -12,18 +12,24 @@ function parseArgs(args: string[]): Record<string, string | boolean> {
       const k = a.slice(2);
       const next = args[i + 1];
       if (!next || next.startsWith("--")) out[k] = true;
-      else { out[k] = next; i++; }
+      else {
+        out[k] = next;
+        i++;
+      }
     }
   }
   return out;
 }
 
 async function readInput(fromFile?: string): Promise<string> {
-  if (fromFile) return await fs.readFile(fromFile, "utf8");
+  if (fromFile) {
+    const buf = await fs.readFile(fromFile);
+    return buf.toString("utf8");
+  }
   const chunks: string[] = [];
   return await new Promise((resolve, reject) => {
     process.stdin.setEncoding("utf8");
-    process.stdin.on("data", c => chunks.push(c));
+    process.stdin.on("data", (c) => chunks.push(String(c)));
     process.stdin.on("end", () => resolve(chunks.join("")));
     process.stdin.on("error", reject);
   });
@@ -53,7 +59,10 @@ Example:
 
 (async function main() {
   const argv = parseArgs(process.argv.slice(2));
-  if (argv.help) { help(); process.exit(0); }
+  if (argv.help) {
+    help();
+    process.exit(0);
+  }
 
   const rootDir = path.resolve(String(argv.root ?? "."));
   const inferRoot = Boolean(argv["infer-root"]);
@@ -71,7 +80,9 @@ Example:
   try {
     const { plan, baseRoot } = parseToPlan(input, { rootDir, inferRoot });
     await executePlan(plan, { dryRun, verbose, gitkeep });
-    const msg = dryRun ? "Dry run complete. Nothing was created." : `Structure created at: ${baseRoot}`;
+    const msg = dryRun
+      ? "Dry run complete. Nothing was created."
+      : `Structure created at: ${baseRoot}`;
     process.stdout.write(msg + "\n");
   } catch (e: any) {
     process.stderr.write(`[error] ${e?.message ?? String(e)}\n`);
