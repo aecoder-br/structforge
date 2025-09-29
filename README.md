@@ -50,6 +50,46 @@ node dist/cli.js --root . --infer-root --gitkeep --from tree.txt
 cat tree.txt | node dist/cli.js --root . --infer-root
 ```
 
+### Input rules (read carefully)
+
+* **Do not add comments or annotations** in the structure. Only list directories and files.
+
+  * ❌ Don’t use trailing notes like `# ...` or `(optional ...)`.
+* **Directories must end with `/`** to be recognized as folders.
+* **Files** can have an extension (e.g. `index.ts`) **or not** (e.g. `Dockerfile`, `LICENSE`).
+
+**Correct**
+
+```
+example-api/
+├─ app/
+│  ├─ main.py
+│  ├─ core/
+│  │  ├─ settings.py
+│  │  └─ logging.py
+├─ Dockerfile
+└─ README.md
+```
+
+**Incorrect**
+
+```
+example-api/
+├─ app/
+│  ├─ main.py
+│  ├─ core/
+│  │  ├─ settings.py          # global settings
+│  │  └─ logging.py          # any other comments 
+│  ├─ api/
+│  │  ├─ routers/
+│  │  │  ├─ users.py
+│  │  └─ errors.py
+│  └─ utils/
+│     └─ http.py 
+├─ Dockerfile                     # optional 
+└─ README.md
+```
+
 Key options:
 
 * `--root <dir>` output root directory, default `.`
@@ -76,14 +116,14 @@ my-project/
   README.md
 ```
 
-### 2) Box drawing characters with inline comments
+### 2) Box drawing characters
 
 ```
 example-api/
 ├─ app/
 │  ├─ main.py
 │  ├─ core/
-│  │  ├─ settings.py          # global settings
+│  │  ├─ settings.py
 │  │  └─ logging.py
 │  ├─ api/
 │  │  ├─ routers/
@@ -98,7 +138,7 @@ example-api/
 └─ README.md
 ```
 
-### 3) Web library with dotted folders and an optional playground
+### 3) Web library with dotted folders
 
 ```
 ui-library/
@@ -118,7 +158,7 @@ ui-library/
   tests/
     button.test.tsx
   .github/workflows/ci.yml
-  examples/ (optional, playground with a bundler)
+  examples/
 ```
 
 ## Contributing
