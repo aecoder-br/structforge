@@ -1,11 +1,11 @@
 # Struct Forge
+
 [![Build dev](https://github.com/aecoder-br/structforge/actions/workflows/ci-dev.yml/badge.svg)](https://github.com/aecoder-br/structforge/actions/workflows/ci-dev.yml)
 [![Build main](https://github.com/aecoder-br/structforge/actions/workflows/ci-main.yml/badge.svg)](https://github.com/aecoder-br/structforge/actions/workflows/ci-main.yml)
 [![License](https://img.shields.io/github/license/aecoder-br/structforge.svg)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/aecoder-br/structforge.svg?style=social)](https://github.com/aecoder-br/structforge)
 [![Node >=18](https://img.shields.io/badge/node-%3E%3D18-339933.svg)](https://nodejs.org/)
 [![npm version](https://img.shields.io/npm/v/structforge.svg)](https://www.npmjs.com/package/structforge)
-
 
 A CLI that turns text trees into real folder and file structures.
 It supports:
@@ -18,6 +18,15 @@ It supports:
 No runtime dependencies, TypeScript only for build.
 
 ## Local install
+
+```bash
+# (optional) pin pnpm via Corepack and use the frozen lockfile (same as CI)
+corepack enable
+corepack prepare pnpm@9 --activate
+pnpm i --frozen-lockfile
+pnpm build
+pnpm test
+```
 
 ```bash
 pnpm i
@@ -146,7 +155,7 @@ Use clear, present-tense messages. Conventional Commits is recommended, for exam
 
 ### CI
 
-CI runs on pushes and PRs to `dev` and `main`. The status badges above use `ci.yml`.
+CI runs on pushes and PRs to `dev` and `main`. The status badges above use `ci-dev.yml` and `ci-main.yml`.
 
 ## Release
 
