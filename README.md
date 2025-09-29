@@ -1,6 +1,6 @@
 # Struct Forge
-[![Build dev](https://github.com/aecoder-br/structforge/actions/workflows/ci-dev.yml/badge.svg?branch=dev)](https://github.com/aecoder-br/structforge/actions/workflows/ci-dev.yml)
-[![Build main](https://github.com/aecoder-br/structforge/actions/workflows/ci-main.yml/badge.svg?branch=main)](https://github.com/aecoder-br/structforge/actions/workflows/ci-main.yml)
+[![Build dev](https://github.com/aecoder-br/structforge/actions/workflows/ci-dev.yml/badge.svg)](https://github.com/aecoder-br/structforge/actions/workflows/ci-dev.yml)
+[![Build main](https://github.com/aecoder-br/structforge/actions/workflows/ci-main.yml/badge.svg)](https://github.com/aecoder-br/structforge/actions/workflows/ci-main.yml)
 [![License](https://img.shields.io/github/license/aecoder-br/structforge.svg)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/aecoder-br/structforge.svg?style=social)](https://github.com/aecoder-br/structforge)
 [![Node >=18](https://img.shields.io/badge/node-%3E%3D18-339933.svg)](https://nodejs.org/)
