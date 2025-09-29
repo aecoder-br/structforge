@@ -1,6 +1,6 @@
 {
   "name": "structforge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Text-to-filesystem scaffolder that understands ASCII trees, indented lists, and path lines. Safe, zero runtime deps.",
   "type": "module",
   "bin": {
