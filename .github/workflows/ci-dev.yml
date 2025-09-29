@@ -4,7 +4,7 @@ on:
   push:
     branches: [ dev ]
   pull_request:
-    branches: [ dev ]   # PRs cujo destino é dev
+    branches: [ dev ]
 
 concurrency:
   group: ci-dev-${{ github.ref }}
@@ -15,13 +15,24 @@ jobs:
     name: build-and-test (dev)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: pnpm/action-setup@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           run_install: false
-      - run: pnpm i
-      - run: pnpm build
-      - run: pnpm test
+
+      - name: Install (frozen lockfile)
+        run: pnpm i --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+        run: pnpm test

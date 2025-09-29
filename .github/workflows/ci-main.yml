@@ -4,8 +4,8 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]  # PRs cujo destino é main
-  workflow_dispatch: {} # opcional: permite rodar manualmente
+    branches: [ main ]
+  workflow_dispatch: {}
 
 concurrency:
   group: ci-main-${{ github.ref }}
@@ -16,13 +16,24 @@ jobs:
     name: build-and-test (main)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: pnpm/action-setup@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           run_install: false
-      - run: pnpm i
-      - run: pnpm build
-      - run: pnpm test
+
+      - name: Install (frozen lockfile)
+        run: pnpm i --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+        run: pnpm test
