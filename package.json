@@ -1,0 +1,59 @@
+{
+  "name": "structforge",
+  "version": "1.0.0",
+  "description": "Text-to-filesystem scaffolder that understands ASCII trees, indented lists, and path lines. Safe, zero runtime deps.",
+  "type": "module",
+  "bin": {
+    "structforge": "dist/cli.js",
+    "sf": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rimraf dist || rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build && node ./scripts/verify-dist.mjs",
+    "test": "node --test",
+    "dev": "ts-node src/cli.ts"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aecoder-br/structforge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aecoder-br/structforge/issues"
+  },
+  "homepage": "https://github.com/aecoder-br/structforge#readme",
+  "keywords": [
+    "scaffold",
+    "cli",
+    "generator",
+    "filesystem",
+    "typescript"
+  ],
+  "author": "Maycon Freitas <maycon.freitas@aecoder.com.br> (https://www.aecoder.com.br/)",
+  "license": "MIT",
+  "packageManager": "pnpm@9.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}
