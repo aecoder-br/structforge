@@ -19,7 +19,9 @@ function parseArgs(args: string[]): Record<string, string | boolean> {
 }
 
 async function readInput(fromFile?: string): Promise<string> {
-  if (fromFile) return await fs.readFile(fromFile, "utf8");
+  if (fromFile) {
+    return await fs.readFile(fromFile, { encoding: "utf8" });
+  }
   const chunks: string[] = [];
   return await new Promise((resolve, reject) => {
     process.stdin.setEncoding("utf8");
