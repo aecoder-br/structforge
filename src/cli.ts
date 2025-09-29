@@ -20,12 +20,13 @@ function parseArgs(args: string[]): Record<string, string | boolean> {
 
 async function readInput(fromFile?: string): Promise<string> {
   if (fromFile) {
-    return await fs.readFile(fromFile, { encoding: "utf8" });
+    const buf = await fs.readFile(fromFile);
+    return buf.toString("utf8");
   }
   const chunks: string[] = [];
   return await new Promise((resolve, reject) => {
     process.stdin.setEncoding("utf8");
-    process.stdin.on("data", c => chunks.push(c));
+    process.stdin.on("data", c => chunks.push(String(c)));
     process.stdin.on("end", () => resolve(chunks.join("")));
     process.stdin.on("error", reject);
   });
