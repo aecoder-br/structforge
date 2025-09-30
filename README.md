@@ -50,6 +50,63 @@ node dist/cli.js --root . --infer-root --gitkeep --from tree.txt
 cat tree.txt | node dist/cli.js --root . --infer-root
 ```
 
+### Run modes
+
+#### 1) Global (installed from npm)
+
+After `npm i -g structforge`:
+
+```bash
+# Linux/macOS
+structforge --root /tmp/out --infer-root --from ./tree.txt
+# or piping inline text
+cat <<'EOF' | structforge --root /tmp/out --infer-root --verbose
+my-app/
+  src/
+    index.ts
+  package.json
+EOF
+```
+
+```powershell
+# Windows PowerShell
+structforge --root "D:\out" --infer-root --from .\tree.txt
+@"
+my-app/
+  src/
+    index.ts
+  package.json
+"@ | structforge --root "D:\out" --infer-root --verbose
+```
+
+#### 2) Local (using the built dist of this repo)
+
+```bash
+pnpm i && pnpm build
+node dist/cli.js --root /tmp/out --infer-root --from ./tree.txt
+# or
+cat tree.txt | node dist/cli.js --root /tmp/out --infer-root
+```
+
+#### 3) Dev (ts-node, without building)
+
+```bash
+pnpm i
+pnpm dev -- --root /tmp/out --infer-root --from ./tree.txt
+# or
+cat tree.txt | pnpm dev -- --root /tmp/out --infer-root
+```
+
+Tips:
+
+* Preview first:
+
+  ```bash
+  structforge --root /tmp/out --infer-root --dry-run --from ./tree.txt
+  ```
+* Create placeholders for empty dirs: add `--gitkeep`.
+* Increase logs: add `--verbose`.
+
 ### Input rules (read carefully)
 
 * **Do not add comments or annotations** in the structure. Only list directories and files.
