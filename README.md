@@ -121,9 +121,9 @@ Tips:
 example-api/
 ├─ app/
 │  ├─ main.py
-│  ├─ core/
-│  │  ├─ settings.py
-│  │  └─ logging.py
+│  └─core/
+│     ├─ settings.py
+│     └─ logging.py
 ├─ Dockerfile
 └─ README.md
 ```
@@ -134,16 +134,10 @@ example-api/
 example-api/
 ├─ app/
 │  ├─ main.py
-│  ├─ core/
-│  │  ├─ settings.py          # global settings
-│  │  └─ logging.py          # any other comments 
-│  ├─ api/
-│  │  ├─ routers/
-│  │  │  ├─ users.py
-│  │  └─ errors.py
-│  └─ utils/
-│     └─ http.py 
-├─ Dockerfile                     # optional 
+│  └─core/
+│     ├─ settings.py       # global settings
+│     └─ logging.py  ------> any other comments 
+├─ Dockerfile              (optional) 
 └─ README.md
 ```
 
