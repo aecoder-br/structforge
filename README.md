@@ -13,7 +13,6 @@ It supports:
 * ASCII trees like `tree` with `│ ├ └ ─`
 * Space-indented lists
 * Path lines like `.github/workflows/ci.yml` or `src/index.ts`
-* End-of-line comments such as `# ...` and trailing parenthetical notes like `(optional, ...)`
 
 No runtime dependencies, TypeScript only for build.
 
